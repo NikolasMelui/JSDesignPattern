@@ -3,12 +3,17 @@ const BasketModule = (() => {
   let goods = [];
 
   return {
-    addProduct: product => {
-      sum += product.price;
-      goods.push(product);
+    addProduct: products => {
+      products.forEach(product => {
+        sum += product.price;
+        goods.push(product);
+      });
     },
 
-    printProducts: () => goods.forEach(good => console.log(good.name, good.price))
+    printProducts: () => {
+      goods.forEach(good => console.log(good.name, good.price));
+      console.log(sum);
+    }
   };
 })();
 
@@ -17,5 +22,9 @@ const sault = {
   price: 20
 };
 
-BasketModule.addProduct(sault);
+const chips = {
+  name: 'chips',
+  price: 30
+};
+BasketModule.addProduct([sault, chips]);
 BasketModule.printProducts();
